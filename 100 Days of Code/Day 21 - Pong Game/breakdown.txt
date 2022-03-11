@@ -1,0 +1,21 @@
+TODO List
+
+    [] Scoreboard for each side
+    [] Movable paddle for each side
+    [] Moving ball (square)
+    [] Bottom and top walls make the ball rebound at an angle
+    [] Left and right walls score a point to the other side if the paddle doesnt hit
+    [] Draw a dotted line in the middle
+    [] Paddle has to act as top and bottom walls allowing ball to rebound
+ 
+ Angela's List
+
+    [] Create the screen
+    [] Create and move a paddle
+    [] Create a second paddle
+    [] Create the ball and make it move
+    [] Detect collision with wall and bounce
+    [] Detect collision with paddle
+    [] Detect when paddle misses
+    [] Keep score
+    
