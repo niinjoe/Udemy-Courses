@@ -12,9 +12,9 @@ with open("./Input/Letters/starting_letter.txt", "r") as main:
     with open("./Input/Names/invited_names.txt", "r") as name:
         individual = name.readlines()
         for person in individual:
-            ind = individual[person].strip("\n")
+            ind = person.strip("\n")
             # print(ind)
-            with open(f"./Output/ReadyToSend/{ind}.txt", "w") as writer:
+            with open(f"./Output/ReadyToSend/Letter for {ind}.txt", "w") as writer:
                 writer.write(f"Dear {ind},\n\n")
                 writer.write(message.strip("Dear [name],\n"))
 
