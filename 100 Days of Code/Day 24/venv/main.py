@@ -4,8 +4,8 @@
 #   contents = file.read()
 #   print(contents)
 
+# with open("../../jserrano/Documents/my_file.txt") as file:
+#   file.read()
 
-with open("my_file.txt", mode="a") as file:
-  file.write("\nThis is the new line of text for the text file.")
-
-
+# with open("C:/Users/jserrano/Documents") as file:
+#   file.read()
