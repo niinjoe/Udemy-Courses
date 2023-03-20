@@ -9,7 +9,7 @@
 #     temperatures = []
 #     for row in data:
 #         temperatures.append(row[1])
-    
+
 #     temperatures.remove(temperatures[0])
 #     new_temp_ls = list(map(int, temperatures))
 #     print(new_temp_ls)
@@ -27,5 +27,16 @@ temp_list = data["temp"].tolist()
 
 # print(temp_list)
 
-avg = temp_list.sum()/temp_list.len()
-print(avg)
+# My attempt for the average
+avg = 0
+for i in temp_list:
+    avg += i
+new_avg = avg / len(temp_list)
+print(new_avg)
+
+# Instructors code
+average = sum(temp_list) / len(temp_list)
+print(average)
+
+#Shorter version with Pandas
+print(data["temp"].mean())
