@@ -40,3 +40,29 @@ print(average)
 
 #Shorter version with Pandas
 print(data["temp"].mean())
+
+#Print max value
+print(data["temp"].max())
+
+#Get data with pandas
+print(data["condition"])
+print(data.condition)
+
+#Get data from a row
+print(data[data["condition"] == "Sunny"])
+print(data[data["day"] == "Monday"])
+
+#Get data from the row with the max temp
+max = data["temp"].max()
+# print(max)
+print(data[data["temp"] == max])
+
+monday = data[data.day == "Monday"]
+print(monday.condition)
+
+#Convert from Celcius to Farenheit
+def f(x):
+    x = x * 1.8 + 32
+    return float(x)
+
+print(monday.temp.apply(f))
