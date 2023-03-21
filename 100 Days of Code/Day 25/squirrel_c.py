@@ -2,14 +2,17 @@ import pandas as pd
 
 df = pd.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Data.csv")
 
-black = df[df["Primary Fur Color"] == "Black"]
-black_c = black["Primary Fur Color"].count()
+black = len(df[df["Primary Fur Color"] == "Black"])
 
-red = df[df["Primary Fur Color"] == "Cinnamon"]
-red_c = red["Primary Fur Color"].count()
+red = len(df[df["Primary Fur Color"] == "Cinnamon"])
 
-gray = df[df["Primary Fur Color"] == "Gray"]
-gray_c = gray["Primary Fur Color"].count()
+gray = len(df[df["Primary Fur Color"] == "Gray"])
 
-black.to_csv("test.csv")
+data_dict = {
+    "Fur Color": ["Gray", "Cinnamon", "Black"],
+    "Count": [gray, red, black]
+}
 
+dict_df = pd.DataFrame(data_dict)
+
+dict_df.to_csv("squirrel_data.csv")
