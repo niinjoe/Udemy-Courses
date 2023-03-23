@@ -10,7 +10,7 @@ screen.addshape(image)
 turtle.shape(image)
 
 game_on = True
-results = df["state"].tolist()
+results = []
 
 while game_on:
     states_list = df["state"].tolist()
