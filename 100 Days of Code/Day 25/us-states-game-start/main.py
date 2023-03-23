@@ -10,13 +10,26 @@ screen.addshape(image)
 turtle.shape(image)
 
 game_on = True
+results = []
+count = len(results)
 
 while game_on:
     answer_state = screen.textinput(
-        title="Guess the State", prompt="Give me a state name."
-    )
+        title=f"{count}/50 States Correct", prompt="Give me a state name."
+    ).title()
+
+    # if answer_state is not None:
+    #     answer_state = answer_state.title()
+    #     print(answer_state)
+    # else:
+    #     print("User clicked Cancel.")
 
     result_row = df.loc[df["state"] == answer_state]
+    # results.append(answer_state)
+
+    states_list = df["states"].tolist()
+    if answer_state in states_list:
+        results.append(answer_state)
 
     if not result_row.empty:
         x_cor = result_row["x"].iloc[0]
@@ -27,4 +40,4 @@ while game_on:
     my_turtle.write(answer_state)
 
 
-# turtle.mainloop()
+print(results)
