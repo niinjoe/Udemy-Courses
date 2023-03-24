@@ -36,6 +36,11 @@ while game_on:
         title=f"{count}/50 States Correct", prompt="Give me a state name."
     ).title()
 
+    if answer_state == "Exit":
+        new_df = df[~df["state"].isin(results) == True]
+        new_df.to_csv("states_to_learn.csv", index=False)
+        break
+
     if answer_state in states_list:
         result_row = df.loc[df["state"] == answer_state]
         if not result_row.empty:
