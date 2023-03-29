@@ -8,4 +8,4 @@ def add(*args):
         n += n
     return n
 
-print(add(1,2,3))
+print(add(1,2,3,90,132))
