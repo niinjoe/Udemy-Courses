@@ -8,8 +8,7 @@ from tkinter import *
 
 window = Tk()
 window.title("Password Manager")
-window.minsize(220, 220)
-window.config(padx=20, pady=20)
+window.config(padx=40, pady=40)
 
 # Canvas
 canvas = Canvas(width=200, height=200)
@@ -28,14 +27,23 @@ password = Label(text="Password:")
 password.grid(row=3, column=0)
 
 # Entry
-website_entry = Entry(width=35)
+website_entry = Entry(width=40)
 website_entry.grid(row=1, column=1, columnspan=2)
+website_entry.focus()
 
-account_entry = Entry(width=35)
+account_entry = Entry(width=40)
 account_entry.grid(row=2, column=1, columnspan=2)
+account_entry.insert(0, "@gmail.com")
+
+password_entry = Entry(width=22)
+password_entry.grid(row=3, column=1)
 
 # Buttons
+generate_button = Button(text="Generate Password")
+generate_button.grid(row=3, column=2)
 
+add_button = Button(text="Add", width=36)
+add_button.grid(row=4, column=1, columnspan=2)
 
 window.mainloop()
 
