@@ -4,12 +4,15 @@ import csv
 import os.path
 from random import *
 import pyperclip
+import string
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
+
 def generator():
-    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-    numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    letters = list(string.ascii_lowercase + string.ascii_uppercase)
+    numbers = list(range(0, 10))
+    numbers = [str(num) for num in numbers]
     symbols = ["!", "#", "$", "%", "&", "(", ")", "*", "+"]
 
     pw_letters = [choice(letters) for _ in range(randint(8, 10))]
@@ -26,6 +29,7 @@ def generator():
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 headers = ["Website", "Email/Username", "Password"]
+
 
 def save():
 
@@ -68,10 +72,11 @@ def save():
             account_entry.delete(0, END)
             password_entry.delete(0, END)
 
+
 # ---------------------------- UI SETUP ------------------------------- #
 
 window = Tk()
-window.title("Password Manager")
+window.title("My Pass Password Manager")
 window.config(padx=40, pady=40)
 
 # Canvas
