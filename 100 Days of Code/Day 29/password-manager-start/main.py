@@ -11,8 +11,7 @@ import string
 
 def generator():
     letters = list(string.ascii_lowercase + string.ascii_uppercase)
-    numbers = list(range(0, 10))
-    numbers = [str(num) for num in numbers]
+    numbers = [str(num) for num in list(range(0, 10))]
     symbols = ["!", "#", "$", "%", "&", "(", ")", "*", "+"]
 
     pw_letters = [choice(letters) for _ in range(randint(8, 10))]
