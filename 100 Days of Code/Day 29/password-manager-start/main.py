@@ -10,17 +10,22 @@ import string
 
 
 def generator():
+    # Create character lists for letters, numbres and symbols
     letters = list(string.ascii_lowercase + string.ascii_uppercase)
     numbers = [str(num) for num in list(range(0, 10))]
     symbols = ["!", "#", "$", "%", "&", "(", ")", "*", "+"]
 
+    # Loop through lists to select ammount of characters randomly
     pw_letters = [choice(letters) for _ in range(randint(8, 10))]
     pw_symbols = [choice(symbols) for _ in range(randint(2, 4))]
     pw_numbers = [choice(numbers) for _ in range(randint(2, 4))]
-    password_list = pw_letters + pw_numbers + pw_symbols
 
+    # Create a new list containing all characters previosly selected, shuffle them & join together to a string
+    password_list = pw_letters + pw_numbers + pw_symbols
     shuffle(password_list)
     password = "".join(password_list)
+
+    # On command fill the entrybox when button press active and copy to clipboard automatically
     password_entry.insert(0, password)
     pyperclip.copy(password)
 
@@ -74,6 +79,7 @@ def save():
 
 # ---------------------------- UI SETUP ------------------------------- #
 
+# Create GUI window
 window = Tk()
 window.title("My Pass Password Manager")
 window.config(padx=40, pady=40)
@@ -113,5 +119,5 @@ generate_button.grid(row=3, column=2)
 add_button = Button(text="Add", width=42, command=save)
 add_button.grid(row=4, column=1, columnspan=2)
 
-
+# Keep window open
 window.mainloop()
