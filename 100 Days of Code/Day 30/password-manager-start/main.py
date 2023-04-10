@@ -40,6 +40,7 @@ def save():
     website = website_entry.get()
     account = account_entry.get()
     password = password_entry.get()
+    # Define initial json structure with a dictionary
     new_data = {
         website: {
             "email": account,
@@ -47,24 +48,28 @@ def save():
         }
     }
 
-    # Validate no box is left empty before saving to csv
+    # Validate no box is left empty before saving to json
     if len(website) == 0 or len(account) == 0 or len(password) == 0:
         messagebox.showerror(title="Error", message="No field should be left blank.")
     else:
+        # Try is used to run a line of code that could give an error (in this case, it will give an error if the file doesn't exist)
         try:
             with open("data.json", "r") as file:
                 # Reading old data
                 data = json.load(file)
+        # The exception will execute if no file is found and create the new file so we don't get an error code
         except FileNotFoundError:
             with open("data.json", "w") as file:
                 # Creating new json file
                 json.dump(new_data, file, indent=4)
+        # Else will execute once try or exception run
         else:
             # Updating old data with new data
             data.update(new_data)
             with open("data.json", "w") as file:
                 # Saving updated data
                 json.dump(data, file, indent=4)
+        # Finally will alwyas clear entries no matter what happens with the rest of the conditions
         finally:
             # Clear entries after button press
             website_entry.delete(0, END)
@@ -74,14 +79,18 @@ def save():
 
 def find_password():
     website = website_entry.get()
+    # Again, we try a line of code that could result in an error
     try:
         with open("data.json", "r") as file:
             data = json.load(file)
+    # If the above code fails, it will probably be due to a file missing, so we execute the exception
     except FileNotFoundError:
         messagebox.showerror(
             title="Error", message="Database is missing or not created."
         )
+    # Else will execute last once the try or except are executed
     else:
+        # We create a condition to figure out if the input is available in the json file
         if website in data:
             email = data[website]["email"]
             password = data[website]["password"]
