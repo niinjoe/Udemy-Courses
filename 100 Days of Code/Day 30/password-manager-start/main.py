@@ -1,7 +1,5 @@
 from tkinter import *
 from tkinter import messagebox
-import csv
-import os.path
 from random import *
 import pyperclip
 import string
@@ -37,8 +35,8 @@ def generator():
 def save():
 
     # Define variables to get strings
-    website = website_entry.get()
-    account = account_entry.get()
+    website = website_entry.get().lower()
+    account = account_entry.get().lower()
     password = password_entry.get()
     # Define initial json structure with a dictionary
     new_data = {
@@ -78,7 +76,7 @@ def save():
 
 
 def find_password():
-    website = website_entry.get()
+    website = website_entry.get().lower()
     # Again, we try a line of code that could result in an error
     try:
         with open("data.json", "r") as file:

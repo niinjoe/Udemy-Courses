@@ -1,10 +1,18 @@
 {
-    "Amazon": {
-        "email": "joe@gmail.com",
-        "password": "L8o)D$pov+x0$v"
+    "amazon": {
+        "email": "jserrano@gmail.com",
+        "password": "(Q3e2vXwjj*Le"
     },
-    "Google": {
-        "email": "joe@gmail.com",
-        "password": "ZfIh5GR#97l+#v#T"
+    "google": {
+        "email": "jserrano@gmail.com",
+        "password": "rYP*k44Z)8UE6a"
+    },
+    "ebay": {
+        "email": "jserrano@gmail.com",
+        "password": "&K&221O*JPMlwWP8"
+    },
+    "ath movil": {
+        "email": "jserrano@gmail.com",
+        "password": "MfL7#$QqGgp5aU1+"
     }
 }
