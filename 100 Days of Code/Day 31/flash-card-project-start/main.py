@@ -11,8 +11,12 @@ current_card = None
 
 # ---------------------------- READ CSV ------------------------------- #
 
-df = pd.read_csv("./data/french_words.csv")
-data = df.to_dict(orient="records")
+try:
+    df = pd.read_csv("./data/words_to_learn.csv")
+    data = df.to_dict(orient="records")
+except FileNotFoundError:
+    df = pd.read_csv("./data/french_words.csv")
+    data = df.to_dict(orient="records")
 
 # ----------This code is bugged when you call next_card() multiple times-------- #
 # def flip_card_front():
@@ -46,6 +50,12 @@ def next_card():
     flip_timer = window.after(3000, func=flip_card_back)
     # update_countdown()
 
+def to_learn():
+    data.remove(current_card)
+    words_to_learn = pd.DataFrame(data)
+    words_to_learn.to_csv("./data/words_to_learn.csv", index=False)
+    next_card()
+
 # ---------------------------- UI SETUP ------------------------------- #
 
 # Create GUI window
@@ -69,7 +79,7 @@ card_title = canvas.create_text(400, 150, fill="black", font=("Arial", 40, "ital
 card_word = canvas.create_text(400, 263, fill="black", font=("Arial", 60, "bold"))
 
 # Buttons
-right_button = Button(image=right, highlightthickness=0, command=next_card)
+right_button = Button(image=right, highlightthickness=0, command=to_learn)
 right_button.grid(row=1, column=0)
 wrong_button = Button(image=wrong, highlightthickness=0, command=next_card)
 wrong_button.grid(row=1, column=1)
