@@ -15,8 +15,8 @@
 import pandas as pd
 df = pd.read_csv("birthdays.csv")
 birthdates = df.to_dict(orient="records")
-print(birthdates)
-
+month_day = (birthdates["name"], (birthdates["month"], birthdates["day"]))
+print(month_day)
 
 import datetime as dt
 now = dt.datetime.now()
