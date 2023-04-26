@@ -9,49 +9,56 @@
 # 4. Send the letter generated in step 3 to that person's email address.
 
 
-
 ############# Step 1: Read the csv to comply with point #2
 
 import pandas as pd
 import datetime as dt
+from random import choice
+import smtplib
 
 now = dt.datetime.now()
 month = now.month
 today = now.day
 
 df = pd.read_csv("birthdays.csv")
-bday = df[(df["month"] == month) & (df["day"] == today)]
-if not bday.empty:
-    bday_person = bday.iloc[0]["name"]
-else:
-    print("No birthdays today.")
 
-############# Step 2: Follow point #3
+#### The following code works, but only selects the first row that satisfies the stated condition ####
+# bday = df[(df["month"] == month) & (df["day"] == today)]
+# if not bday.empty:
+#     bday_person = bday.iloc[0]["name"]
+#     print(bday_person)
+# else:
+#     print("No birthdays today.")
 
-from random import choice
+matching_rows = []
+for index, row in df.iterrows():
+    if row["month"] == month and row["day"] == today:
+        matching_rows.append(row)
 
-letter = choice(["letter_1.txt", "letter_2.txt", "letter_3.txt"])
+for row in matching_rows:
+    bday_person = row["name"]
+    # print(bday_person)
 
-with open(f"./letter_templates/{letter}") as file:
-    letter = file.read()
-    letter = letter.replace("[NAME]", bday_person)
-    # print(letter)
-    
-############# Final Step: Send message via email
+    ############# Step 2: Follow point #3
 
-import smtplib
+    letter = choice(["letter_1.txt", "letter_2.txt", "letter_3.txt"])
 
-# my_email = "ed.serrano.test@gmail.com"  # This is the sender email
-my_email = "daftsapien@gmail.com"  # This is the sender email
-# password = "maerzcuqgyrrjedd"  # This is the app password, not the account password (for google)
-password = "vmigvmepcdghnnqj"  # This is the app password, not the account password (for google)
-test_email = "joe_serrano_test@yahoo.com"  # This is the receivers email
+    with open(f"./letter_templates/{letter}") as file:
+        letter = file.read()
+        letter = letter.replace("[NAME]", bday_person)
+        # print(letter)
 
-with smtplib.SMTP("smtp.gmail.com") as connection:
-    connection.starttls()
-    connection.login(user=my_email, password=password)
-    connection.sendmail(
-        from_addr=my_email,
-        to_addrs=test_email,
-        msg=f"Subject:Happy Birthday!\n\n{letter}",
+    ############# Final Step: Send message via email
+
+    my_email = "ed.serrano.test@gmail.com"  # This is the sender email
+    password = "maerzcuqgyrrjedd"  # This is the app password, not the account password (for google)
+    bday_email = row["email"]  # This is the receivers email
+    # print(bday_email)
+    with smtplib.SMTP("smtp.gmail.com") as connection:
+        connection.starttls()
+        connection.login(user=my_email, password=password)
+        connection.sendmail(
+            from_addr=my_email,
+            to_addrs=bday_email,
+            msg=f"Subject:Happy Birthday!\n\n{letter}",
         )
